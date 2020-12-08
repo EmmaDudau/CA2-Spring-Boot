@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table(name = "customers")
@@ -13,7 +14,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customer_id;
+    private long customer_id;
 
     @Column(name = "firstname")
     private String firstName;
@@ -37,7 +38,7 @@ public class Customer {
 
     }
 
-    public Customer(int customer_id, String firstName, String surName, String address, String email, String phone, String createDate) {
+    public Customer(long customer_id, String firstName, String surName, String address, String email, String phone, String createDate) {
         super();
         this.customer_id = customer_id;
         this.firstName = firstName;
@@ -103,4 +104,5 @@ public class Customer {
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
+
 }
