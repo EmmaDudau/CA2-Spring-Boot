@@ -1,0 +1,17 @@
+{
+  "products": {
+    "id": 1,
+    "name": "prodcutA",
+    "Quantity": "1",
+    "dates": {
+      "modified": "09.12.2020",
+      "created": "09.12.2020",
+    }
+    "price": "eur": "49.99",
+    "barcode": "ABC123",
+
+  }
+}
+
+}
+}
