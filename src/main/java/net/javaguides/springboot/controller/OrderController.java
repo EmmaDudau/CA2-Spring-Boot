@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.javaguides.springboot.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -54,9 +55,9 @@ public class OrderController {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
 
-        order.setFirstName(orderDetails.getFirstName());
-        order.setLastName(orderDetails.getLastName());
-        order.setEmailId(orderDetails.getEmailId());
+        order.setCustomerId(orderDetails.getCustomerId());
+        order.setOrderDate(orderDetails.getOrderDate());
+        order.setOrderPaid(orderDetails.getOrderPaid());
 
         Order updatedOrder = orderRepository.save(order);
         return ResponseEntity.ok(updatedOrder);

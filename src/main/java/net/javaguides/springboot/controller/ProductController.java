@@ -1,7 +1,8 @@
 package net.javaguides.springboot.controller;
 
 import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.model.Products;
+import net.javaguides.springboot.model.Product;
+import net.javaguides.springboot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,53 +17,53 @@ import java.util.Map;
 public class ProductController {
 
 	@Autowired
-	private ProductsRepository productsRepository;
+	private ProductRepository productRepository;
 	
 	// get all products
 	@GetMapping("/products")
-	public List<Products> getAllProducts(){
-		return productsRepository.findAll();
+	public List<Product> getAllProducts(){
+		return productRepository.findAll();
 	}		
 	
 	// create products rest api
 	@PostMapping("/products")
-	public Products createProducts(@RequestBody Products products) {
-		return productsRepository.save(products);
+	public Product createProducts(@RequestBody Product product) {
+		return productRepository.save(product);
 	}
 	
 	// get products by id rest api
 	@GetMapping("/products/{id}")
-	public ResponseEntity<Products> getProductsById(@PathVariable Long id) {
-		Products products = productsRepository.findById(id)
+	public ResponseEntity<Product> getProductsById(@PathVariable Long id) {
+		Product product = productRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + id));
-		return ResponseEntity.ok(products);
+		return ResponseEntity.ok(product);
 	}
 	
 	// update products rest api
 	
 	@PutMapping("/products/{id}")
-	public ResponseEntity<Products> updateProducts(@PathVariable Long id, @RequestBody Products productDetails){
-		Products products = productsRepository.findById(id)
+	public ResponseEntity<Product> updateProducts(@PathVariable Long id, @RequestBody Product productDetails){
+		Product product = productRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + id));
 		
-		products.setProductName(productDetails.getProductName());
-		products.setProductQuantity(productDetails.getProductQuantity());
-		products.setProductModified(productDetails.getProductModified());
-		products.setProductCreated(productDetails.getProductCreated());
-		products.setProductPrice(productDetails.getProductPrice());
-		products.setProductBarcode(productDetails.getProductBarcode());
+		product.setProductName(productDetails.getProductName());
+		product.setProductQuantity(productDetails.getProductQuantity());
+		product.setProductModified(productDetails.getProductModified());
+		product.setProductCreated(productDetails.getProductCreated());
+		product.setProductPrice(productDetails.getProductPrice());
+		product.setProductBarcode(productDetails.getProductBarcode());
 
-		Products updatedProducts = productsRepository.save(products);
-		return ResponseEntity.ok(updatedProducts);
+		Product updatedProduct = productRepository.save(product);
+		return ResponseEntity.ok(updatedProduct);
 	}
 	
 	// delete products rest api
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteProducts(@PathVariable Long id){
-		Products products = productsRepository.findById(id)
+		Product product = productRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + id));
 		
-		productsRepository.delete(products);
+		productRepository.delete(product);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);

@@ -10,7 +10,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "products")
-public class Products {
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,18 +35,18 @@ public class Products {
 	private String productBarcode;
 
 
-	public Products() {
+	public Product() {
 		
 	}
 
-	public Products(String productName, int productQuantity, String productModified, String productCreated, double productPrice, String barcode) {
+	public Product(String productName, int productQuantity, String productModified, String productCreated, double productPrice, String productBarcode) {
 		super();
 		this.productName = productName;
 		this.productQuantity = productQuantity;
 		this.productModified = productModified;
-		this.productCreated = this.productCreated;
-		this.productPrice = this.productPrice;
-		this.productBarcode = this.productBarcode;
+		this.productCreated = productCreated;
+		this.productPrice = productPrice;
+		this.productBarcode = productBarcode;
 	}
 	public long getId() {
 		return id;
