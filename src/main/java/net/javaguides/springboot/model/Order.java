@@ -37,6 +37,9 @@ public class Order {
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Product> products;
 
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<Employee> employees;
+
     public Order() {
     }
 
