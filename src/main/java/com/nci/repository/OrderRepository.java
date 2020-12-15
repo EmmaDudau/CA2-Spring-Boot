@@ -1,7 +1,8 @@
-package net.javaguides.springboot.repository;
+package com.nci.repository;
+import com.nci.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import net.javaguides.springboot.model.Order;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 

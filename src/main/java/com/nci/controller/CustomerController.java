@@ -1,9 +1,12 @@
-package net.javaguides.springboot.controller;
+package com.nci.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.nci.exception.ResourceNotFoundException;
+import com.nci.model.Customer;
+import com.nci.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,10 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.model.Customer;
-import net.javaguides.springboot.repository.CustomerRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -60,6 +59,7 @@ public class CustomerController {
         customer.setAddress(customerDetails.getAddress());
         customer.setEmail(customerDetails.getEmail());
         customer.setPhone(customerDetails.getPhone());
+        customer.setCreateDate(customer.getCreateDate());
 
 
         Customer updatedCustomer = customerRepository.save(customer);

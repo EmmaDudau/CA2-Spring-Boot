@@ -1,10 +1,12 @@
-package net.javaguides.springboot.controller;
+package com.nci.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.javaguides.springboot.model.Order;
+import com.nci.exception.ResourceNotFoundException;
+import com.nci.model.Order;
+import com.nci.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,9 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.repository.OrderRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -58,6 +57,7 @@ public class OrderController {
         order.setCustomerId(orderDetails.getCustomerId());
         order.setOrderDate(orderDetails.getOrderDate());
         order.setOrderPaid(orderDetails.getOrderPaid());
+        order.setQuantityOrdered(orderDetails.getQuantityOrdered());
 
         Order updatedOrder = orderRepository.save(order);
         return ResponseEntity.ok(updatedOrder);

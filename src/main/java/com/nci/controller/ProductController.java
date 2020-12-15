@@ -1,8 +1,8 @@
-package net.javaguides.springboot.controller;
+package com.nci.controller;
 
-import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.model.Product;
-import net.javaguides.springboot.repository.ProductRepository;
+import com.nci.exception.ResourceNotFoundException;
+import com.nci.model.Product;
+import com.nci.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

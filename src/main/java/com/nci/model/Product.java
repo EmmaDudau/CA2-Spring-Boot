@@ -1,4 +1,4 @@
-package net.javaguides.springboot.model;
+package com.nci.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,19 +35,6 @@ public class Product {
 	private String productBarcode;
 
 
-	public Product() {
-		
-	}
-
-	public Product(String productName, int productQuantity, String productModified, String productCreated, double productPrice, String productBarcode) {
-		super();
-		this.productName = productName;
-		this.productQuantity = productQuantity;
-		this.productModified = productModified;
-		this.productCreated = productCreated;
-		this.productPrice = productPrice;
-		this.productBarcode = productBarcode;
-	}
 	public long getId() {
 		return id;
 	}

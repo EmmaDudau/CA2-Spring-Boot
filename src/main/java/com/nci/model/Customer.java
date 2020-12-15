@@ -1,4 +1,4 @@
-package net.javaguides.springboot.model;
+package com.nci.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "customers")
@@ -14,7 +15,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customer_id;
+    private long id;
 
     @Column(name = "firstname")
     private String firstName;
@@ -32,29 +33,15 @@ public class Customer {
     private String phone;
 
     @Column(name = "createDate")
-    private String createDate;
+    private LocalDate createDate;
 
-    public Customer() {
 
+    public long getId() {
+        return id;
     }
 
-    public Customer(long customer_id, String firstName, String surName, String address, String email, String phone, String createDate) {
-        super();
-        this.customer_id = customer_id;
-        this.firstName = firstName;
-        this.surName = surName;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
-        this.createDate = createDate;
-    }
-
-    public long getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(long customer_id) {
-        this.customer_id = customer_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -97,12 +84,11 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
-
 }
