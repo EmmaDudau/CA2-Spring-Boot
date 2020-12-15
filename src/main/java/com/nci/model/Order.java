@@ -1,4 +1,4 @@
-package net.javaguides.springboot.model;
+package com.nci.model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -17,10 +17,8 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private long orderId;
-
-//    @Column(name = "order_id")
-//    private long orderId;
 
     @Column(name = "customer_id")
     private String customerId;
@@ -34,23 +32,6 @@ public class Order {
     @Column(name = "quantity_ordered")
     private int quantityOrdered;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Product> products;
-
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Employee> employees;
-
-    public Order() {
-    }
-
-    public Order(long orderId, String customerId, String orderDate, String orderPaid, int quantityOrdered) {
-        super();
-        this.orderId = orderId;
-        this.customerId = customerId;
-        this.orderDate = orderDate;
-        this.orderPaid = orderPaid;
-        this.quantityOrdered = quantityOrdered;
-    }
 
     public long getOrderId() {
         return orderId;

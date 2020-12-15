@@ -1,6 +1,6 @@
-package net.javaguides.springboot.repository;
+package com.nci.repository;
 
-import net.javaguides.springboot.model.Product;
+import com.nci.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
