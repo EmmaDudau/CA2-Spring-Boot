@@ -17,7 +17,6 @@ public class CustomerOrderId implements Serializable {
     public CustomerOrderId() {
     }
 
-
     public CustomerOrderId( Long customerId, Long orderId) {
         this.customerId = customerId;
         this.orderId = orderId;
