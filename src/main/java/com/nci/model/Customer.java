@@ -1,13 +1,9 @@
 package com.nci.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.sql.Date;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -35,6 +31,8 @@ public class Customer {
     @Column(name = "createDate")
     private LocalDate createDate;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> posts = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -90,5 +88,13 @@ public class Customer {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+    public List<Order> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Order> posts) {
+        this.posts = posts;
     }
 }

@@ -1,27 +1,21 @@
 package com.nci.model;
 
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private long orderId;
+    @EmbeddedId
+    private CustomerOrderId id;
 
-    @Column(name = "customer_id")
-    private String customerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("id")
+    private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("id")
+    private Product product;
 
     @Column(name = "order_date")
     private String orderDate;
@@ -32,22 +26,6 @@ public class Order {
     @Column(name = "quantity_ordered")
     private int quantityOrdered;
 
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
 
     public String getOrderDate() {
         return orderDate;
@@ -71,5 +49,29 @@ public class Order {
 
     public void setQuantityOrdered(int quantityOrdered) {
         this.quantityOrdered = quantityOrdered;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public CustomerOrderId getId() {
+        return id;
+    }
+
+    public void setId(CustomerOrderId id) {
+        this.id = id;
     }
 }
