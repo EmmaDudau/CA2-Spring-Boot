@@ -1,21 +1,6 @@
 package com.nci.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.nci.exception.ResourceNotFoundException;
-import com.nci.model.Order;
-import com.nci.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,56 +9,54 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/")
 public class OrderController {
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    // get all orders
-    @GetMapping("/orders")
-    public List<Order> getAllOrders(){
-        return orderRepository.findAll();
-    }
-
-    // create order rest api
-    @PostMapping("/orders")
-    public Order createOrder(@RequestBody Order order) {
-        return orderRepository.save(order);
-    }
-
-    // get order by id rest api
-    @GetMapping("/orders/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
-        return ResponseEntity.ok(order);
-    }
-
-    // update order rest api
-
-    @PutMapping("/orders/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order orderDetails){
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
-
-        order.setCustomerId(orderDetails.getCustomerId());
-        order.setOrderDate(orderDetails.getOrderDate());
-        order.setOrderPaid(orderDetails.getOrderPaid());
-        order.setQuantityOrdered(orderDetails.getQuantityOrdered());
-
-        Order updatedOrder = orderRepository.save(order);
-        return ResponseEntity.ok(updatedOrder);
-    }
-
-    // delete order rest api
-    @DeleteMapping("/orders/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteOrder(@PathVariable Long id){
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
-
-        orderRepository.delete(order);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
-    }
+//    @Autowired
+//    private OrderRepository orderRepository;
+//
+//    // get all orders
+//    @GetMapping("/orders")
+//    public List<Order> getAllOrders(){
+//        return orderRepository.findAll();
+//    }
+//
+//    // create order rest api
+//    @PostMapping("/orders")
+//    public Order createOrder(@RequestBody Order order) {
+//        return orderRepository.save(order);
+//    }
+//
+//    // get order by id rest api
+//    @GetMapping("/orders/{id}")
+//    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+//        Order order = orderRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
+//        return ResponseEntity.ok(order);
+//    }
+//
+//    // update order rest api
+//
+//    @PutMapping("/orders/{id}")
+//    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order orderDetails){
+//        Order order = orderRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
+//        order.setOrderDate(orderDetails.getOrderDate());
+//        order.setOrderPaid(orderDetails.getOrderPaid());
+//        order.setQuantityOrdered(orderDetails.getQuantityOrdered());
+//
+//        Order updatedOrder = orderRepository.save(order);
+//        return ResponseEntity.ok(updatedOrder);
+//    }
+//
+//    // delete order rest api
+//    @DeleteMapping("/orders/{id}")
+//    public ResponseEntity<Map<String, Boolean>> deleteOrder(@PathVariable Long id){
+//        Order order = orderRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Order not exist with id :" + id));
+//
+//        orderRepository.delete(order);
+//        Map<String, Boolean> response = new HashMap<>();
+//        response.put("deleted", Boolean.TRUE);
+//        return ResponseEntity.ok(response);
+//    }
 
 
 }
