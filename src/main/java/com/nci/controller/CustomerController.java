@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins={ "http://localhost:3000", "http://localhost:4200" })
+@CrossOrigin(origins={ "http://localhost:3000", "http://localhost:8080" })
 @RestController
 public class CustomerController {
 
@@ -21,7 +22,12 @@ public class CustomerController {
     // get all customers
     @GetMapping("/customers")
     public List<Customer> getAllCustomers(){
-        return customerRepository.findAll();
+
+        List<Customer> customers = customerRepository.findAll();
+        customers.forEach(c -> {
+            initializeCollection(c.getOrders());
+        });
+        return customers;
     }
 
     // create customer rest api
@@ -67,6 +73,16 @@ public class CustomerController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
+    }
+
+
+
+    //An alternative to Hibernate.initialize()
+    protected void initializeCollection(Collection<?> collection) {
+        if(collection == null) {
+            return;
+        }
+        collection.iterator().hasNext();
     }
 
 

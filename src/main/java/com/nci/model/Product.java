@@ -1,5 +1,7 @@
 package com.nci.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class Product {
 	@Column(name = "product_barcode")
 	private String productBarcode;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Order> posts = new ArrayList<>();
 
 	public long getId() {
@@ -86,6 +88,7 @@ public class Product {
 		this.productBarcode = barcode;
 	}
 
+	@JsonManagedReference
 	public List<Order> getPosts() {
 		return posts;
 	}

@@ -6,5 +6,13 @@ VALUES ('Iphone X', 50, '01/02/2021', '01/02/2021', 980, 'zyx123' );
 
 
 
+INSERT into
+        customers (address, create_date, email, firstname, phone, surname)
+    values
+        ('5 the pine, Co Dublin', '2018-10-20', 'mick@gmail.com', 'Mick', '0123445', 'Hogan')
+
+
+
+
 
 
