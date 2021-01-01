@@ -27,7 +27,7 @@ public class Product {
 	@Column(name = "product_price")
 	private double productPrice;
 
-	@Column(name = "productBarcode")
+	@Column(name = "product_barcode")
 	private String productBarcode;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
