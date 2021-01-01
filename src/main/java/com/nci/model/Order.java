@@ -1,5 +1,7 @@
 package com.nci.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,11 +11,13 @@ public class Order {
     @EmbeddedId
     private CustomerOrderId id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("id")
     private Product product;
 
@@ -51,6 +55,7 @@ public class Order {
         this.quantityOrdered = quantityOrdered;
     }
 
+    @JsonBackReference(value="customer-order")
     public Customer getCustomer() {
         return customer;
     }
@@ -59,6 +64,7 @@ public class Order {
         this.customer = customer;
     }
 
+    @JsonBackReference
     public Product getProduct() {
         return product;
     }

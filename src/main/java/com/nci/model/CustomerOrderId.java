@@ -11,15 +11,17 @@ public class CustomerOrderId implements Serializable {
     @Column(name = "customer_id")
     private Long customerId;
 
+    @Column(name = "product_id")
+    private Long productId;
+
     @Column(name = "order_id")
-    private Long orderId;
+    private String orderId;
+
+//    public CustomerOrderId() {
+//    }
+
 
     public CustomerOrderId() {
-    }
-
-    public CustomerOrderId( Long customerId, Long orderId) {
-        this.customerId = customerId;
-        this.orderId = orderId;
     }
 
     public Long getCustomerId() {
@@ -30,11 +32,19 @@ public class CustomerOrderId implements Serializable {
         this.customerId = customerId;
     }
 
-    public Long getOrderId() {
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -44,11 +54,12 @@ public class CustomerOrderId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         CustomerOrderId that = (CustomerOrderId) o;
         return Objects.equals(customerId, that.customerId) &&
+                Objects.equals(productId, that.productId) &&
                 Objects.equals(orderId, that.orderId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, orderId);
+        return Objects.hash(customerId, productId, orderId);
     }
 }

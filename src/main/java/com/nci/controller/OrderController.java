@@ -3,6 +3,7 @@ package com.nci.controller;
 import com.nci.exception.ResourceNotFoundException;
 import com.nci.model.Order;
 import com.nci.repository.OrderRepository;
+import com.nci.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,9 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     // get all orders
     @GetMapping("/orders")
     public List<Order> getAllOrders(){
@@ -27,6 +31,17 @@ public class OrderController {
     // create order rest api
     @PostMapping("/orders")
     public Order createOrder(@RequestBody Order order) {
+//        CustomerOrderId customerOrderId = new CustomerOrderId();
+//        customerOrderId.setCustomerId(1L);
+//        customerOrderId.setProductId(1L);
+//        customerOrderId.setOrderId(String.valueOf(ThreadLocalRandom.current().nextInt()));
+//
+//        Order o  = new Order();
+//        o.setId(customerOrderId);
+//        o.setQuantityOrdered(23);
+//        o.setOrderDate("12/12/2020");
+//        o.setOrderPaid("Y");
+
         return orderRepository.save(order);
     }
 

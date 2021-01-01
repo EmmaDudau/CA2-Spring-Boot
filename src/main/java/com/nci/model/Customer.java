@@ -1,5 +1,7 @@
 package com.nci.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class Customer {
     private LocalDate createDate;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> posts = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -90,11 +92,13 @@ public class Customer {
         this.createDate = createDate;
     }
 
-    public List<Order> getPosts() {
-        return posts;
+
+    @JsonManagedReference(value="customer-order")
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setPosts(List<Order> posts) {
-        this.posts = posts;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
