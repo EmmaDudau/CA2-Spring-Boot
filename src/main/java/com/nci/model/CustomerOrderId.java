@@ -17,9 +17,6 @@ public class CustomerOrderId implements Serializable {
     @Column(name = "order_id")
     private String orderId;
 
-//    public CustomerOrderId() {
-//    }
-
 
     public CustomerOrderId() {
     }
